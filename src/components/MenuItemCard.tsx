@@ -16,9 +16,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   onUpdateQuantity 
 }) => {
   const [showCustomization, setShowCustomization] = useState(false);
-  const [selectedVariation, setSelectedVariation] = useState<Variation | undefined>(
-    item.variations?.[0]
-  );
+  const [selectedVariation, setSelectedVariation] = useState<Variation | undefined>(undefined);
   const [selectedAddOns, setSelectedAddOns] = useState<(AddOn & { quantity: number })[]>([]);
 
   const calculatePrice = () => {
@@ -42,6 +40,12 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   };
 
   const handleCustomizedAddToCart = () => {
+    // Require variation selection if variations exist
+    if (item.variations && item.variations.length > 0 && !selectedVariation) {
+      alert('Please select a size variation');
+      return;
+    }
+    
     // Convert selectedAddOns back to regular AddOn array for cart
     const addOnsForCart: AddOn[] = selectedAddOns.flatMap(addOn => 
       Array(addOn.quantity).fill({ ...addOn, quantity: undefined })
@@ -49,6 +53,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
     onAddToCart(item, 1, selectedVariation, addOnsForCart);
     setShowCustomization(false);
     setSelectedAddOns([]);
+    setSelectedVariation(undefined);
   };
 
   const handleIncrement = () => {
@@ -242,7 +247,11 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                 <p className="text-sm text-black/60 mt-1">Choose your preferences</p>
               </div>
               <button
-                onClick={() => setShowCustomization(false)}
+                onClick={() => {
+                  setShowCustomization(false);
+                  setSelectedVariation(undefined);
+                  setSelectedAddOns([]);
+                }}
                 className="p-2 hover:bg-brand-primary/10 rounded-full transition-colors duration-200"
               >
                 <X className="h-5 w-5 text-black" />
