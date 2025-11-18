@@ -40,12 +40,6 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   };
 
   const handleCustomizedAddToCart = () => {
-    // Require variation selection if variations exist
-    if (item.variations && item.variations.length > 0 && !selectedVariation) {
-      alert('Please select a size variation');
-      return;
-    }
-    
     // Convert selectedAddOns back to regular AddOn array for cart
     const addOnsForCart: AddOn[] = selectedAddOns.flatMap(addOn => 
       Array(addOn.quantity).fill({ ...addOn, quantity: undefined })
