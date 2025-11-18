@@ -4,6 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          primary: '#ccb595',
+          background: '#EDE7D8',
+          text: '#000000'
+        },
         ramen: {
           red: '#D7263D',
           dark: '#0B0A0A',
@@ -17,8 +22,7 @@ export default {
         }
       },
       fontFamily: {
-        'pretendard': ['Pretendard', 'system-ui', 'sans-serif'],
-        'noto-kr': ['Noto Serif KR', 'serif']
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif']
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
