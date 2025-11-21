@@ -93,14 +93,14 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
         <div className="max-w-2xl mx-auto mb-8">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-black/40" />
+              <Search className="h-5 w-5 text-black/60" />
             </div>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for menu items..."
-              className="w-full pl-12 pr-12 py-3 md:py-4 border-2 border-brand-primary/20 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all duration-200 text-black placeholder-black/40 font-sans text-base md:text-lg bg-white shadow-sm"
+              className="w-full pl-12 pr-12 py-3 md:py-4 border-2 border-brand-primary/20 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all duration-200 text-black placeholder-black/40 font-sans text-base md:text-lg bg-brand-primary shadow-sm"
             />
             {searchQuery && (
               <button
